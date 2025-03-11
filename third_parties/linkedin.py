@@ -6,10 +6,9 @@ load_dotenv()
 
 def scrape_linkedin_profile(url: str, mock: bool = False):
     if mock:
-        m_url = "https://gist.githubusercontent.com/shasank27/deacaa0be2655ab346c3549fb6299876/raw/914e337a7c56d4cfd72d648cc86623a43decfbb4/test.json"
         profile_url = "https://gist.githubusercontent.com/shasank27/31887f7c9af1b2b96c9d0e73bb97cf6a/raw/c99da7c76919a086939f2d52101f637d7a02157b/shasank-scrapin.json"
         response = requests.get(
-            m_url,
+            profile_url,
             timeout=10
         )
     else:
@@ -23,7 +22,9 @@ def scrape_linkedin_profile(url: str, mock: bool = False):
             params=params,
             timeout=10
         )
+    # print(response.json())
     data = response.json().get("person")
+    # print(data)
     data = { 
         k: v 
         for k, v in data.items()
